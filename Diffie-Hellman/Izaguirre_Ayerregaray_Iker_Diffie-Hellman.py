@@ -1,5 +1,7 @@
 import random
 
+# Definir el método que ejecute el exponencial modular.
+
 
 def mod_exp(b: int, e: int, p: int) -> int:
     x: int
@@ -18,18 +20,23 @@ def mod_exp(b: int, e: int, p: int) -> int:
     return x
 
 
+# El número primo y la base
 p: int = 761
 g: int = 6
 
 # random.randint(1, 10**100)
-# randomIker: int = random.randint(1, 10**100)
-# randomElena: int = random.randint(1, 10**100)
 
-randomIker: int = 9979219203731601911928975844281701173308623973473067026329084015674262449505355025435932129284870203
-randomElena: int = 7088383412973965963172339874534569047505976494686124697935777470950518994119586399903473171323486681
+# Número aleatorio o x, el que se usará para pasar a binario.
+randomIker: int = random.randint(1, 10**100)
 
+# Clave parcial, o publica para compartir.
 xIker: int = mod_exp(g, randomIker, p)
-yElena: int = mod_exp(g, randomElena, p)
+# Enviar al compañero
+print(f"Envía el número X: {xIker} a tu compañero.")
+# Recibir la clave del compañero
+y: int = int(input("Ingrese el número Y que su compañero le ha enviado: "))
 
-kIker = mod_exp(yElena, randomIker, p)
-kElena = mod_exp(xIker, randomElena, p)
+# Calcular la clave final para cifrar
+kIker = mod_exp(y, randomIker, p)
+
+print(f"La clave secreta compartida es: {kIker}")
